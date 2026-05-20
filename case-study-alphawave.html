@@ -240,6 +240,27 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--color-accent);outli
 .tag-row{display:flex;flex-wrap:wrap;gap:var(--space-xs);margin:var(--space-sm) 0;}
 .mini-tag{padding:5px 12px;background:rgba(var(--color-accent-rgb),.08);border:1px solid rgba(var(--color-accent-rgb),.18);border-radius:20px;font-size:12px;font-weight:600;color:var(--color-accent);}
 
+/* ── Figure / Image Card ── */
+.figure{
+  background:var(--color-bg-secondary);
+  border:1px solid var(--color-border);
+  border-radius:14px;overflow:hidden;margin:var(--space-md) 0 var(--space-lg);
+}
+.figure__media img{width:100%;height:auto;object-fit:cover;display:block;}
+.figure__media{
+  aspect-ratio:16/9;display:grid;place-items:center;
+  background:linear-gradient(135deg,rgba(var(--color-accent-rgb),.08),rgba(var(--color-accent-rgb),.03));
+  color:var(--color-text-tertiary);
+  font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+  padding:0;text-align:center;position:relative;overflow:hidden;
+}
+.figure__caption{
+  padding:var(--space-sm) var(--space-md);font-size:13px;color:var(--color-text-tertiary);
+  line-height:1.5;border-top:1px solid var(--color-border);
+}
+[data-theme="high-contrast"] .figure{border-color:#FFF;}
+[data-theme="high-contrast"] .figure__media{background:#111;}
+
 /* ── Dividers & footer ── */
 .section-divider{border:none;border-top:1px solid var(--color-border);margin:var(--space-lg) 0;}
 .case-footer{background:var(--color-bg-secondary);border-top:1px solid var(--color-border);}
@@ -468,6 +489,15 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--color-accent);outli
         </div>
 
         <p>The key finding: most inconsistency was <strong>accidental, not intentional</strong>. Engineers were making good-faith decisions in the absence of guidance. The product didn't have conflicting design philosophies &mdash; it had an absence of shared vocabulary. That diagnosis changed the entire approach to the system I built.</p>
+
+        <figure class="figure">
+          <div class="figure__media">
+            <img srcset="assets/images/case-studies/alphwave/alphawave-figure-1-768w.avif 768w, assets/images/case-studies/alphwave/alphawave-figure-1-1200w.avif 1200w, assets/images/case-studies/alphwave/alphawave-figure-1-1536w.avif 1536w"
+                 sizes="(max-width: 900px) 100vw, 900px"
+                 alt="Product audit findings showing inconsistent UI patterns across AlphaWave screens before the design system was established.">
+          </div>
+          <figcaption class="figure__caption">Discovery audit: screen-by-screen inventory of UI patterns revealed accidental inconsistency across AlphaWave's product — the diagnostic foundation for the system architecture.</figcaption>
+        </figure>
       </section>
 
       <hr class="section-divider">
@@ -547,6 +577,15 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--color-accent);outli
           <span class="mini-tag">Shadow &mdash; 3 elevations</span>
           <span class="mini-tag">Motion &mdash; 3 durations + easing</span>
         </div>
+
+        <figure class="figure">
+          <div class="figure__media">
+            <img srcset="assets/images/case-studies/alphwave/alphawave-figure-2-768w.avif 768w, assets/images/case-studies/alphwave/alphawave-figure-2-1200w.avif 1200w, assets/images/case-studies/alphwave/alphawave-figure-2-1536w.avif 1536w"
+                 sizes="(max-width: 900px) 100vw, 900px"
+                 alt="AlphaWave design token architecture showing the three-tier hierarchy: primitive, semantic, and component tokens.">
+          </div>
+          <figcaption class="figure__caption">Token architecture: the three-tier hierarchy (primitive → semantic → component) gave engineering teams the right level of abstraction at every consumption point while keeping Figma-to-code traceability explicit.</figcaption>
+        </figure>
       </section>
 
       <hr class="section-divider">
@@ -593,6 +632,15 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--color-accent);outli
         <div class="callout">
           <p>"The handoff documentation wasn't a nice-to-have. Under a contract engagement, it was the system. The components are the assets; the documentation is the system."</p>
         </div>
+
+        <figure class="figure">
+          <div class="figure__media">
+            <img srcset="assets/images/case-studies/alphwave/alphawave-figure-3-768w.avif 768w, assets/images/case-studies/alphwave/alphawave-figure-3-1200w.avif 1200w, assets/images/case-studies/alphwave/alphawave-figure-3-1536w.avif 1536w"
+                 sizes="(max-width: 900px) 100vw, 900px"
+                 alt="AlphaWave design system Figma file showing the organized component library and documentation structure built for handoff.">
+          </div>
+          <figcaption class="figure__caption">Handoff deliverable: the Figma file was structured as a living document — organized page hierarchy, consistent layer naming, and component descriptions written for the maintainer who comes next.</figcaption>
+        </figure>
       </section>
 
       <hr class="section-divider">

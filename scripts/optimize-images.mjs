@@ -2,8 +2,8 @@ import fs from "node:fs/promises";
 import path from "node:path";
 import sharp from "sharp";
 
-const INPUT_DIR = "assets/images/new";
-const OUTPUT_DIR = "assets/images/case-studies/enablement/";
+const INPUT_DIR = "assets/images/new/";
+const OUTPUT_DIR = "assets/images/case-studies/alphwave/";
 
 const AVIF_QUALITY = 58;
 const WEBP_QUALITY = 84;
@@ -12,17 +12,21 @@ const JPEG_QUALITY = 86;
 const IMAGE_EXTS = new Set([".png", ".jpg", ".jpeg"]);
 
 const IMAGE_CONFIG = {
-  "enab-card-header": {
+  "alphawave-card-header": {
     widths: [600, 900, 1200],
     mode: "banner",
     // keep this wide and intentionally cropped for the card
     aspectRatio: 3 / 2
   },
-  "plat-figure-1": {
+  "alphawave-figure-1": {
     widths: [768, 1200, 1536],
     mode: "responsive"
   },
-  "plat-figure-2": {
+  "alphawave-figure-2": {
+    widths: [768, 1200, 1536],
+    mode: "responsive"
+  },
+  "alphawave-figure-3": {
     widths: [768, 1200, 1536],
     mode: "responsive"
   },
