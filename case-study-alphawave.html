@@ -121,28 +121,82 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--color-accent);outli
 .back-link::before{content:'←';font-size:14px;}
 .back-link:hover{color:var(--color-accent);}
 
-/* ── Theme controls ── */
-.theme-controls{display:flex;align-items:center;gap:6px;background:var(--color-bg-tertiary);border:1px solid var(--color-border);border-radius:8px;padding:4px;backdrop-filter:blur(8px);}
-.theme-btn{display:flex;align-items:center;gap:6px;padding:6px 12px;border-radius:6px;border:none;background:transparent;color:var(--color-text-secondary);font-size:13px;font-weight:500;cursor:pointer;transition:background var(--motion-fast),color var(--motion-fast);white-space:nowrap;}
-.theme-btn:hover{background:var(--color-bg-secondary);color:var(--color-text-primary);}
-.theme-btn.active{background:var(--color-bg-secondary);color:var(--color-text-primary);box-shadow:0 1px 3px rgba(0,0,0,.1);}
-.theme-btn svg{opacity:.7;flex-shrink:0;}
-.theme-btn.active svg{opacity:1;}
-[data-theme="dark"] .theme-btn{color:var(--color-text-secondary);}
-[data-theme="dark"] .theme-btn.active{background:var(--color-bg-tertiary);}
+/* ── Theme Controls ── */
+.theme-controls{
+  display:flex;align-items:center;
+  background:rgba(255,255,255,.12);
+  backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  border:1px solid rgba(0,0,0,.1);border-radius:12px;padding:4px;
+  box-shadow:0 4px 20px rgba(0,0,0,.08);
+  flex-shrink:0;
+}
+.theme-btn{
+  background:transparent;border:none;cursor:pointer;
+  padding:8px 14px;border-radius:8px;
+  color:rgba(26,26,26,.8);font-size:13px;font-weight:600;
+  display:flex;align-items:center;gap:6px;white-space:nowrap;
+  font-family:var(--font-body);
+  transition:all var(--motion-med);
+}
+.theme-btn svg{width:15px;height:15px;fill:currentColor;transition:all var(--motion-med);}
+.theme-btn:hover{color:var(--color-accent);}
+.theme-btn.active{
+  background:rgba(255,255,255,.3);
+  color:var(--color-accent);font-weight:700;
+  box-shadow:0 2px 8px rgba(var(--color-accent-rgb),.2),inset 0 1px 0 rgba(255,255,255,.4);
+}
+[data-theme="dark"] .theme-controls{background:rgba(26,26,26,.5);border-color:rgba(255,255,255,.1);box-shadow:0 4px 20px rgba(0,0,0,.3);}
+[data-theme="dark"] .theme-btn{color:#ccc;}
+[data-theme="dark"] .theme-btn.active{background:rgba(255,255,255,.12);box-shadow:0 2px 8px rgba(var(--color-accent-rgb),.3);}
+[data-theme="high-contrast"] .theme-controls{background:#000;border:2px solid #FFF;box-shadow:none;backdrop-filter:none;}
+[data-theme="high-contrast"] .theme-btn{color:#EEE;border:1px solid #444;border-radius:6px;margin:2px;}
+[data-theme="high-contrast"] .theme-btn:hover{border-color:#FFD700;color:#FFD700;}
+[data-theme="high-contrast"] .theme-btn.active{background:#FFD700;color:#000;border-color:#FFD700;}
 
-/* ── Theme dropdown (tablet) ── */
-.theme-dropdown{display:none;position:relative;}
-.theme-dropdown-toggle{display:flex;align-items:center;gap:6px;padding:6px 12px;border-radius:6px;border:1px solid var(--color-border);background:var(--color-bg-tertiary);color:var(--color-text-primary);font-size:13px;font-weight:500;cursor:pointer;transition:background var(--motion-fast);}
-.theme-dropdown-toggle:hover{background:var(--color-bg-secondary);}
-.theme-dropdown-caret{transition:transform var(--motion-fast);flex-shrink:0;}
+/* Theme dropdown (small screens) */
+.theme-dropdown{display:none;position:relative;flex-shrink:0;}
+.theme-dropdown-toggle{
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+  min-width:172px;background:rgba(255,255,255,.12);backdrop-filter:blur(16px);
+  border:1px solid rgba(0,0,0,.1);border-radius:12px;
+  padding:10px 16px;cursor:pointer;
+  color:rgba(26,26,26,.85);font-size:14px;font-weight:600;
+  font-family:var(--font-body);transition:all var(--motion-med);
+}
+.theme-dropdown-toggle__content{display:flex;align-items:center;gap:10px;min-width:0;}
+.theme-dropdown-current-icon{display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;}
+.theme-dropdown-current-icon svg,.theme-dropdown-toggle svg{width:18px;height:18px;fill:currentColor;opacity:.85;}
+.theme-dropdown-label{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+.theme-dropdown-caret{flex-shrink:0;transition:transform var(--motion-med);}
 .theme-dropdown-toggle[aria-expanded="true"] .theme-dropdown-caret{transform:rotate(180deg);}
-.theme-dropdown-current-icon{display:flex;align-items:center;opacity:.8;}
-.theme-dropdown-menu{position:absolute;top:calc(100% + 6px);right:0;min-width:140px;background:var(--color-bg-secondary);border:1px solid var(--color-border);border-radius:8px;box-shadow:0 4px 16px rgba(0,0,0,.1);padding:4px;display:none;z-index:100;}
+[data-theme="dark"] .theme-dropdown-toggle{background:rgba(26,26,26,.5);border-color:rgba(255,255,255,.1);color:#e5e5e5;}
+[data-theme="high-contrast"] .theme-dropdown-toggle{background:#000;border:2px solid #FFF;color:#FFF;}
+.theme-dropdown-menu{
+  display:none;position:absolute;top:calc(100% + 8px);right:0;
+  background:rgba(255,255,255,.97);backdrop-filter:blur(20px);
+  border:1px solid rgba(0,0,0,.1);border-radius:12px;
+  padding:8px;min-width:190px;
+  box-shadow:0 8px 32px rgba(0,0,0,.15);z-index:1000;
+}
 .theme-dropdown-menu.active{display:block;}
-.theme-dropdown-menu button{display:flex;align-items:center;gap:8px;width:100%;padding:8px 12px;border:none;background:transparent;color:var(--color-text-primary);font-size:14px;font-weight:500;cursor:pointer;border-radius:6px;transition:background var(--motion-fast);text-align:left;}
-.theme-dropdown-menu button:hover{background:var(--color-bg-tertiary);}
-.theme-dropdown-menu button.active{background:rgba(var(--color-accent-rgb),.08);color:var(--color-accent);}
+[data-theme-item]{
+  display:flex;align-items:center;gap:12px;
+  width:100%;padding:10px 12px;border-radius:8px;
+  background:transparent;border:none;cursor:pointer;
+  color:rgba(26,26,26,.85);font-size:14px;font-weight:600;
+  font-family:var(--font-body);text-align:left;
+  transition:all var(--motion-fast);
+}
+[data-theme-item] svg{width:18px;height:18px;fill:currentColor;flex-shrink:0;}
+[data-theme-item]:hover{background:rgba(var(--color-accent-rgb),.1);color:var(--color-accent);}
+[data-theme-item].active{background:rgba(var(--color-accent-rgb),.12);color:var(--color-accent);}
+[data-theme="dark"] .theme-dropdown-menu{background:rgba(26,26,26,.97);border-color:rgba(255,255,255,.12);}
+[data-theme="dark"] [data-theme-item]{color:#e5e5e5;}
+[data-theme="dark"] [data-theme-item]:hover{background:rgba(var(--color-accent-rgb),.15);}
+:root:not([data-theme="dark"]):not([data-theme="high-contrast"]) .theme-dropdown-toggle{background:rgba(0,0,0,.04);border-color:rgba(0,0,0,.12);color:var(--color-text-primary);}
+[data-theme="high-contrast"] .theme-dropdown-menu{background:#000;border:2px solid #FFF;}
+[data-theme="high-contrast"] [data-theme-item]{color:#FFF;border:1px solid #333;border-radius:6px;margin-bottom:3px;background:#1a1a1a;}
+[data-theme="high-contrast"] [data-theme-item].active{background:#FFD700;color:#000;border-color:#FFD700;}
 
 /* ── Case hero ── */
 .case-hero{
@@ -378,7 +432,7 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--color-accent);outli
   <rect x="4"  y="27" width="3"  height="13" fill="currentColor"/>
   <rect x="27" y="37" width="13" height="3"  fill="currentColor"/>
   <rect x="37" y="27" width="3"  height="13" fill="currentColor"/>
-  <rect x="18.5" y="18.5" width="7" height="7" transform="rotate(45 22 22)" fill="#6366F1"/>
+  <rect x="18.5" y="18.5" width="7" height="7" transform="rotate(45 22 22)" fill="#FF6B2B"/>
 </svg>
         <span class="logo-sep" aria-hidden="true"></span>
         <span class="logo-name">Rebecca Havens Gore</span>
@@ -496,7 +550,7 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--color-accent);outli
                  sizes="(max-width: 900px) 100vw, 900px"
                  alt="Product audit findings showing inconsistent UI patterns across AlphaWave screens before the design system was established.">
           </div>
-          <figcaption class="figure__caption">Discovery audit: screen-by-screen inventory of UI patterns revealed accidental inconsistency across AlphaWave's product — the diagnostic foundation for the system architecture.</figcaption>
+          <figcaption class="figure__caption">Discovery foundation: I used the UX brief, IA model, workflow diagrams, and product audit artifacts to identify where the interface needed systemization — not just visual cleanup.</figcaption>
         </figure>
       </section>
 
@@ -577,15 +631,6 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--color-accent);outli
           <span class="mini-tag">Shadow &mdash; 3 elevations</span>
           <span class="mini-tag">Motion &mdash; 3 durations + easing</span>
         </div>
-
-        <figure class="figure">
-          <div class="figure__media">
-            <img srcset="assets/images/case-studies/alphwave/alphawave-figure-2-768w.avif 768w, assets/images/case-studies/alphwave/alphawave-figure-2-1200w.avif 1200w, assets/images/case-studies/alphwave/alphawave-figure-2-1536w.avif 1536w"
-                 sizes="(max-width: 900px) 100vw, 900px"
-                 alt="AlphaWave design token architecture showing the three-tier hierarchy: primitive, semantic, and component tokens.">
-          </div>
-          <figcaption class="figure__caption">Token architecture: the three-tier hierarchy (primitive → semantic → component) gave engineering teams the right level of abstraction at every consumption point while keeping Figma-to-code traceability explicit.</figcaption>
-        </figure>
       </section>
 
       <hr class="section-divider">
@@ -635,11 +680,11 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--color-accent);outli
 
         <figure class="figure">
           <div class="figure__media">
-            <img srcset="assets/images/case-studies/alphwave/alphawave-figure-3-768w.avif 768w, assets/images/case-studies/alphwave/alphawave-figure-3-1200w.avif 1200w, assets/images/case-studies/alphwave/alphawave-figure-3-1536w.avif 1536w"
+            <img srcset="assets/images/case-studies/alphwave/alphawave-figure-2-768w.avif 768w, assets/images/case-studies/alphwave/alphawave-figure-2-1200w.avif 1200w, assets/images/case-studies/alphwave/alphawave-figure-2-1536w.avif 1536w"
                  sizes="(max-width: 900px) 100vw, 900px"
-                 alt="AlphaWave design system Figma file showing the organized component library and documentation structure built for handoff.">
+                 alt="AlphaWave design token architecture showing the three-tier hierarchy: primitive, semantic, and component tokens.">
           </div>
-          <figcaption class="figure__caption">Handoff deliverable: the Figma file was structured as a living document — organized page hierarchy, consistent layer naming, and component descriptions written for the maintainer who comes next.</figcaption>
+          <figcaption class="figure__caption">System library: AlphaWave’s Figma-based design system documentation, including foundational styles, navigation, cards, overlays, and reusable component patterns.</figcaption>
         </figure>
       </section>
 
@@ -679,6 +724,15 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--color-accent);outli
             <div class="impact-card__description">Every architectural decision documented with rationale, alternatives, and extension guidance</div>
           </div>
         </div>
+
+        <figure class="figure">
+          <div class="figure__media">
+            <img srcset="assets/images/case-studies/alphwave/alphawave-figure-3-768w.avif 768w, assets/images/case-studies/alphwave/alphawave-figure-3-1200w.avif 1200w, assets/images/case-studies/alphwave/alphawave-figure-3-1536w.avif 1536w"
+                 sizes="(max-width: 900px) 100vw, 900px"
+                 alt="AlphaWave design system Figma file showing the organized component library and documentation structure built for handoff.">
+          </div>
+          <figcaption class="figure__caption">System application: Final AlphaWave product screens showing how the design system supported consistent dashboards, investigation details, response workflows, and pipeline views across the product.</figcaption>
+        </figure>
       </section>
 
       <hr class="section-divider">
