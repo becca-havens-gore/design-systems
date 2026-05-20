@@ -3,7 +3,7 @@ import path from "node:path";
 import sharp from "sharp";
 
 const INPUT_DIR = "assets/images/new/";
-const OUTPUT_DIR = "assets/images/case-studies/alphwave/";
+const OUTPUT_DIR = "assets/images/case-studies/alphawave/";
 
 const AVIF_QUALITY = 58;
 const WEBP_QUALITY = 84;
